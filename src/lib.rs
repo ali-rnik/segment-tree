@@ -1,34 +1,3 @@
-macro_rules! parse_line {
-    ($t: ty) => ({
-        let mut a_str = String::new();
-        std::io::stdin().read_line(&mut a_str).expect("read error");
-        let a_str = a_str.trim();
-        a_str.parse::<$t>().expect("parse error")
-    });
-    ($($t: ty),+) => ({
-        let mut a_str = String::new();
-        std::io::stdin().read_line(&mut a_str).expect("read error");
-        let mut a_iter = a_str.split_whitespace();
-        (
-            $(
-                a_iter.next().unwrap().parse::<$t>().expect("parse error"),
-            )+
-        )
-    })
-}
-
-#[allow(unused_macros)]
-macro_rules! parse_line_to_vec {
-    ($t: ty) => {{
-        let mut a_str = String::new();
-        std::io::stdin().read_line(&mut a_str).expect("read error");
-        (a_str
-            .split_whitespace()
-            .map(|x| x.parse::<$t>().unwrap())
-            .collect::<Vec<$t>>())
-    }};
-}
-
 struct Segtree<'a> {
     nums: &'a Vec<i32>,
     st: Vec<i32>,
